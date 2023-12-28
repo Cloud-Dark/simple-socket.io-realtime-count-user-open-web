@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contoh Socket.IO TCP</title>
+  <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
+  <script>
+    // Membuat koneksi Socket.IO ke server
+    const socket = io('http://localhost:3000', {
+      transports: ['websocket', 'polling', 'tcp']
+    });
+
+    // Mengatur event ketika koneksi berhasil dibuat
+    socket.on('connect', () => {
+      console.log('Terhubung ke server');
+    });
+
+    // Mengatur event ketika menerima pesan dari server
+    socket.on('message', (message) => {
+      console.log('Pesan dari server:', message);
+    });
+
+    // Mengatur event ketika terputus dari server
+    socket.on('disconnect', () => {
+      console.log('Terputus dari server');
+    });
+
+    // Mengatur event untuk menerima jumlah pengguna terhubung
+    socket.on('userCount', (count) => {
+      console.log('Jumlah pengguna terhubung:', count);
+      document.getElementById('userCount').innerText = count;
+    });
+  </script>
+</head>
+<body>
+  <h1>Simple Socket.io</h1>
+  <p>Jumlah pengguna terhubung: <span id="userCount">0</span></p>
+</body>
+</html>
