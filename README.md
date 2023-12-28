@@ -34,7 +34,7 @@ Berikut adalah penjelasan singkat tentang kode dalam file `index.js`:
 
 1. Impor library yang diperlukan:
 
-   ```\`javascript
+   ```javascript
    const express = require('express');
    const app = express();
    const http = require('http').Server(app);
